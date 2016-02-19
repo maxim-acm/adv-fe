@@ -1,0 +1,26 @@
+{
+  "name": "adv-fe",
+  "description": "advanced-frontend work",
+  "main": "",
+  "authors": [
+    "maxim-acm <maxim-acm@yandex.ru>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/maxim-acm/adv-fe",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.x.x",
+    "underscore": "1.8.3",
+    "backbone": "~1.x",
+    "react": "~0.14.7",
+    "angular": "~1.4",
+    "lodash": "~4.4",
+    "handlebars": "^4.0.5"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules
+client_src/jquery
+client_src/underscore
+client_src/backbone
+client_src/react
+client_src/angular
+client_src/lodash
+client_src/handlebars
+.bowerrc

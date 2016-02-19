@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FE-EDV Application</title>
+  </head>
+  <body class="body">
+
+  </body>
+
+  <script id="app" type="text/html-handlebars-template">
+      <header>
+        {{user.email}}
+      </header>
+      <section class="current-post">
+        <div class="current-post__image-box"></div>
+        <p>
+          {{user.name}}
+        </p>
+      </section>
+      <section class="comments">
+        {{> comments-box}}
+      </section>
+      <section class="related-posts">
+        {{#each relatedPosts}}
+          {{> post-preview class="post-container"}}
+        {{/each}}
+      </section>
+  </script>
+
+  <script id=comments-box-template type="text/html-handlebars-template">
+    {{#each comments}}
+      {{> comment-preview}}
+    {{/each}}
+  </script>
+
+<script id="post-container-template" type="text/html-handlebars-template">
+  <div class="post-preview {{class}}">
+    {{img imgUrl}}
+    {{description}}
+  </div>
+</script>
+
+<script id='comment-preview-template' type="text/html-handlebars-template">
+  <div class="comment-preview">
+    {{username}}{{text}}
+  </div>
+</script>
+
+<script id="current-post__image-template" type="text/html-handlebars-template">
+  {{img currentPost.imgUrl}}
+</script>
+
+  <script src="jquery/dist/jquery.min.js"></script>
+  <script src="data.js"></script>
+  <script src="posts.js"></script>
+  <script src="lodash/lodash.js"></script>
+  <script src="handlebars/handlebars.js"></script>
+</html>
