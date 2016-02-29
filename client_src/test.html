@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test html</title>
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="data.js"></script>
+    <script src="libs/lodash/lodash.js"></script>
+    <script src="libs/handlebars/handlebars.js"></script>
+    <style>
+      .task {
+        margin: 10px auto;
+        width: 900px;
+        border: 1px solid #b2b2b2;
+      }
+
+      .json {
+        padding: 10px;
+      }
+
+      .table {
+        padding: 10px;
+      }
+
+      .table-row__black {
+        background-color: #b2b2b2;
+        padding: 5px 0;
+        color: #fff
+      }
+
+      .table-row__white {
+        padding: 5px 0;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="task">
+        <div class="json">
+          <pre></pre>
+        </div>
+        <div class="table"></div>
+    </div>
+  </body>
+
+  <script id="json-template" type="ext/html-handlebars-template">
+    {{~json posts}}
+  </script>
+
+  <script id="table-template" type="text/x-handlebars-template">
+    {{#table posts}}
+      {{~description}}
+    {{/table}}
+  </script>
+
+  <script>
+
+  var tableTamplate = Handlebars.compile( $("#table-template").html() );
+
+  Handlebars.registerHelper('table', function(items, options){
+
+    var out = '';
+
+    items.forEach(function(item, i){
+      var tableClass = (i%2 == 0)? "table-row__black" : "table-row__white";
+      out += '<div class="'+ tableClass + '">' + options.fn(items[i]) + '</div>'
+    });
+
+      return out;
+  });
+
+  $('.table').html(tableTamplate({
+    posts: Data.getPosts()
+  }));
+
+  var jsonTemplate = Handlebars.compile( $('#json-template').html() );
+
+  Handlebars.registerHelper('json', function(obj) {
+    return new Handlebars.SafeString(JSON.stringify(obj, null, 4));
+  });
+
+  $('.json pre').html(jsonTemplate({
+    posts: Data.getPosts()
+  }))
+
+  </script>
+
+</html>
