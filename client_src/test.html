@@ -11,7 +11,9 @@
   </head>
   <body>
     <div class="task">
-        <div class="json"></div>
+        <div class="json">
+          <pre></pre>
+        </div>
         <div class="table"></div>
     </div>
   </body>
@@ -21,9 +23,9 @@
   </script>
 
   <script id="table-template" type="text/x-handlebars-template">
-      {{#table posts}}
-          {{~description}}
-      {{/table}}
+    {{#table posts}}
+      {{~description}}
+    {{/table}}
   </script>
 
   <script>
@@ -31,14 +33,13 @@
   var tableTamplate = Handlebars.compile( $('#table-template').html() );
 
   Handlebars.registerHelper('table', function(items, options){
-      var out = "";
 
-      for (var i = 0; i < items.length; i++) {
+    var out = '';
 
-        i%2 == 0 ?
-            out += '<div class="table-row__black">' + options.fn(items[i])+'</div>' :
-                out += '<div class="table-row__white">' + options.fn(items[i])+'</div>'
-      }
+    items.forEach(function(item, i){
+      var tableClass = (i%2 == 0)? "table-row__black" : "table-row__white";
+      out += '<div class="'+ tableClass + '">' + options.fn(items[i]) + '</div>'
+    });
 
       return out;
   });
@@ -50,10 +51,12 @@
   var jsonTemplate = Handlebars.compile( $('#json-template').html() );
 
   Handlebars.registerHelper('json', function(obj) {
-    return JSON.stringify(obj, null, 8);
+
+    return new Handlebars.SafeString(JSON.stringify(obj, null, 4));
+
   });
 
-  $('.json').html(jsonTemplate({
+  $('.json pre').html(jsonTemplate({
     posts: Data.getPosts()
   }));
 

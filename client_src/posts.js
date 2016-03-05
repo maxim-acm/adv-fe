@@ -1,24 +1,27 @@
 $(document).ready(function(){
 
-  var appTemplate = Handlebars.compile( $('#app').html() );
-  var postContainerTemplate = Handlebars.compile( $('#post-container-template').html() );
-  var currenPostImageTemplate = Handlebars.compile( $('#current-post__image-template').html() );
+    var userTemplate = Handlebars.compile( $('#user-template').html() );
+    var currentPostTemplate = Handlebars.compile( $('#current-post-template').html() );
+    var relatedPostsTemplate = Handlebars.compile( $('#related-posts-template').html() );
 
-  Handlebars.registerPartial('post-preview', $('#post-container-template').html());
-  Handlebars.registerPartial('comments-box', $('#comments-box-template').html());
-  Handlebars.registerPartial('comment-preview', $('#comment-preview-template').html());
+    Handlebars.registerPartial('post', $('#post-template').html());
+    Handlebars.registerPartial('comments-box', $('#comments-box-template').html());
+    Handlebars.registerPartial('comment', $('#comment-template').html());
+    Handlebars.registerHelper('img', function(imgUrl){
+        return new Handlebars.SafeString('<img src="' + imgUrl + '"/>')
+    });
 
-  Handlebars.registerHelper('img', function(imgUrl){
-    return new Handlebars.SafeString('<img src="' + imgUrl + '"/>')
-  });
+    $('.header-inner').html(userTemplate({
+        user: Data.getUser('aab')
+    }));
 
-  $('.body').html(appTemplate({
-    user: Data.getUser('aab'),
-    relatedPosts: Data.getRelatedPosts(),
-    comments: Data.getPostComments()
-  }))
+    $('.current-post').html(currentPostTemplate({
+        currentPost: Data.getCurrentPost(),
+        comments: Data.getPostComments()
+    }));
 
-  $('.current-post__image-box').html(currenPostImageTemplate({
-    currentPost: Data.getCurrentPost()
-  }))
+    $('.related-posts').html(relatedPostsTemplate({
+        posts: Data.getRelatedPosts()
+    }));
+
 });

@@ -1,10 +1,14 @@
 {
   "name": "adv-fe",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node app.js"
+  },
   "description": "advanced-frontend work",
   "author": "",
   "dependencies": {
     "express": "^4.x",
+    "latest-version": "^2.0.0",
     "lodash": "^4.x.x"
   },
   "devDependencies": {
@@ -28,6 +32,9 @@
     "gulp-uglify": "^1.5.3",
     "gulp-watch": "^4.3.5",
     "jshint": "^2.9.1",
-    "yargs": "^4.2.0"
+    "yargs": "^4.2.0",
+    "gulp-clean": "^0.3.1",
+    "run-sequence": "^1.1.5"
+
   }
 }

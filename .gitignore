@@ -1,3 +1,4 @@
 node_modules
-client_src/libs
 .idea
+**/lib
+client_build
