@@ -52,7 +52,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('js', function () {
-    gulp.src('client_src/js/*.js')
+    gulp.src('client_src/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(concat('all.js'))
         .pipe(gulpif(argv.prod, uglify()))
@@ -98,8 +98,3 @@ gulp.task('htmlhint', function () {
 });
 
 gulp.task('style', ['csscomb', 'jscs']);
-
-
-
-
-
