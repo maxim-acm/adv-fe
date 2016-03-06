@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <title>test html</title>
     <script src="libs/jquery/dist/jquery.min.js"></script>
-    <script src="js/all.js"></script>
-    <script src="libs/lodash/dist/lodash.min.js"></script>
+    <script src="all.js"></script>
     <script src="libs/handlebars/handlebars.min.js"></script>
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div class="task">
@@ -18,19 +17,19 @@
     </div>
   </body>
 
-  <script id="json-template" type="ext/html-handlebars-template">
+  <script id="json-template" type="text/x-handlebars-template">
     {{~json posts}}
   </script>
 
   <script id="table-template" type="text/x-handlebars-template">
     {{#table posts}}
-      {{~description}}
+      {{description}}
     {{/table}}
   </script>
 
   <script>
 
-  var tableTamplate = Handlebars.compile( $('#table-template').html() );
+  var tableTemplate = Handlebars.compile( $('#table-template').html() );
 
   Handlebars.registerHelper('table', function(items, options){
 
@@ -44,7 +43,7 @@
       return out;
   });
 
-  $('.table').html(tableTamplate({
+  $('.table').html(tableTemplate({
     posts: Data.getPosts()
   }));
 
