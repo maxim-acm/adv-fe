@@ -2,7 +2,7 @@ var express = require('express');
 
 var app = express();
 var path = require('path');
-var CLIENT_PATH = '/client_src';
+var CLIENT_PATH = '/client_build';
 
 app.use( '/', express.static( path.join( __dirname, CLIENT_PATH ) ) );
 
